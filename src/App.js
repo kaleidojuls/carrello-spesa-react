@@ -6,9 +6,10 @@ import ProductsDisplay from './components/ProductsDisplay/ProductsDisplay';
 
 function App() {
   const [products, setProducts] = useState();
-  let [countCart, setCountCart] = useState(0);
   let [itemsInCart, setItemsInCart] = useState([]);
-  let [isCartMenuOpen, setisCartMenuOpen] = useState(false);
+  let [countCart, setCountCart] = useState(0);
+  let [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
+  const countProductsInCart = itemsInCart.length;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,17 +37,16 @@ function App() {
     alert("Prodotto rimosso dal Carrello!");
   }
 
-  const manageCart = () => {
-   isCartMenuOpen ? setisCartMenuOpen(false) : setisCartMenuOpen(true);
+  const menageCart = () => {
+   isCartMenuOpen ? setIsCartMenuOpen(false) : setIsCartMenuOpen(true);
   }
 
-  //prova per diminuire i parametri da passare al componente Navbar
-  const ciccio = {countCart, isCartMenuOpen, manageCart}
+  const cartOpenCloseButton = {isCartMenuOpen, menageCart, countProductsInCart};
 
   return (
     <div className="App">
       <header>
-        <Navbar infoVarieCiccio={ciccio} />
+        <Navbar navButton={cartOpenCloseButton} />
       </header>
       <main>
         <CartMenu isOpen={isCartMenuOpen}>
