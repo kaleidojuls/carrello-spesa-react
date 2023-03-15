@@ -1,7 +1,7 @@
 import { createStore } from "redux";
-import counter from './reducers';
-import { clear, increment, decrement } from './actions';
+import cartHandler from './reducers';
+import { addToCart, removeFromCart, clear } from './actions';
 
-export const store = createStore(counter);
+export const store = createStore(cartHandler);
 
-export { clear, increment, decrement } 
+export { addToCart, removeFromCart, clear } 

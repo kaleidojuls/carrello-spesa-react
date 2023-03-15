@@ -1,18 +1,27 @@
 const initialState = {
-    counter: 0,
+    cartItemsArr: [],
 };
 
-const counter = (state = initialState, action) => {
+const cartHandler = (state = initialState, action) => {
     switch (action.type) {
-        case "INCREMENT":
-            return { counter: state.counter + 1 };
-        case "DECREMENT":
-            return { counter: state.counter - 1 };
+        case "ADD_TO_CART":
+            return {
+                ...state,
+                cartItemsArr: [...state.cartItemsArr, action.payload]
+            };
+        case "REMOVE_FROM_CART":
+            const updatedArr = [...state.cartItemsArr];
+            const productIndex = updatedArr.indexOf(action.payload);
+            updatedArr.splice(productIndex, 1)
+            return {
+                ...state,
+                cartItemsArr: updatedArr
+            }
         case "CLEAR":
-            return { counter: 0 };
+            return { cartItemsArr: 0 };
         default:
             return state;
     }
 };
 
-export default counter;
+export default cartHandler;
