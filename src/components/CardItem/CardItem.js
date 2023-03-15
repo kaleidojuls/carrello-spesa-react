@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import Image from "../Image/Image";
 
 const CardItem = ({ productData, buttonClass, buttonText, buttonOnClick }) => {
-   const { title, description } = productData;
+   const { id, title, description } = productData;
    const cardStyle = { maxHeight: "100%", overflowY: "auto" };
 
    return <div className="myCard card">

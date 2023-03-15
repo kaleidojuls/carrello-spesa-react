@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from './components/Button/Button';
 import CardItem from './components/CardItem/CardItem';
 import Navbar from './components/Navbar/Navbar';
+import { clear, increment, decrement } from './store/store.js';
 
 function App() {
   const [products, setProducts] = useState();
@@ -38,10 +41,18 @@ function App() {
 
   const cartOpenCloseButton = { isCartMenuOpen, menageCart, countProductsInCart };
 
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+  const handleIncrement = () => {
+    dispatch(increment);
+    console.log(counter);
+  };
+
   return (
     <div className="App">
       <header>
         <Navbar navButton={cartOpenCloseButton} />
+        <Button buttonOnClick={handleIncrement}>prova Redux</Button>
       </header>
       <main className="d-flex flex-wrap justify-content-center bg-light">
 
