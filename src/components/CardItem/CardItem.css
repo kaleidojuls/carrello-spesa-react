@@ -1,7 +1,6 @@
 .myCard {
     width: 250px;
-    min-width: 250px;
+    height: 450px;
     padding: 5px;
     margin: 10px;
-    max-height: 450px;
 }

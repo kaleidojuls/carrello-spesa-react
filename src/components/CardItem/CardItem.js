@@ -1,14 +1,13 @@
 import "./CardItem.css";
 import Button from "../Button/Button";
-import Image from "../Image/Image";
+import CardImage from "../CardImage/CardImage";
 
 const CardItem = ({ productData, buttonClass, buttonText, buttonOnClick }) => {
-   const { id, title, description } = productData;
-   const cardStyle = { maxHeight: "100%", overflowY: "auto" };
+   const { title, description } = productData;
 
    return <div className="myCard card">
-      <Image imageData={productData} />
-      <div className="card-body" style={cardStyle}>
+      <CardImage imageData={productData} />
+      <div className="card-body" style={{ maxHeight: "100%", overflowY: "auto" }}>
          <h3 className="card-title">{title}</h3>
          <p className="card-text">{description}</p>
       </div>

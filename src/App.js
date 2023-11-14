@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { addToCart } from './store/store.js';
 
 import CardItem from './components/CardItem/CardItem';

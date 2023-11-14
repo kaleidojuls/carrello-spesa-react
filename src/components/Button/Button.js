@@ -1,7 +1,8 @@
-const Button = ({children, className, buttonOnClick}) => {
-    const defaultClassName = className || "btn btn-primary";
-    const dafaultStyle = {fontWeight: "bold"};
-    return <button onClick={buttonOnClick} className={defaultClassName} style={dafaultStyle}>{children}</button>
+const Button = ({ children, className, buttonOnClick }) => {
+
+    return <button onClick={buttonOnClick}
+        className={className || "btn btn-primary"}
+        style={{ fontWeight: "bold" }}>{children}</button>
 }
 
 export default Button;

@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
+
 import Button from "../Button/Button";
 
 const Navbar = ({ page }) => {
     const navigate = useNavigate();
-    const productsInCart = useSelector((state) => state.cartItemsArr);
+    const productsInCart = useSelector((state) => state.cartProducts);
     const buttonText = page === 'cart' ? "Chiudi Carrello (" + productsInCart.length + ")" :
         "Vedi Carrello (" + productsInCart.length + ")";
 

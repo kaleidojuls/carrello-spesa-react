@@ -1,5 +1,5 @@
 const initialState = {
-    cartItemsArr: [],
+    cartProducts: [],
 };
 
 const cartHandler = (state = initialState, action) => {
@@ -7,18 +7,18 @@ const cartHandler = (state = initialState, action) => {
         case "ADD_TO_CART":
             return {
                 ...state,
-                cartItemsArr: [...state.cartItemsArr, action.payload]
+                cartProducts: [...state.cartProducts, action.payload]
             };
         case "REMOVE_FROM_CART":
-            const updatedArr = [...state.cartItemsArr];
+            const updatedArr = [...state.cartProducts];
             const productIndex = updatedArr.indexOf(action.payload);
             updatedArr.splice(productIndex, 1)
             return {
                 ...state,
-                cartItemsArr: updatedArr
+                cartProducts: updatedArr
             }
         case "CLEAR":
-            return { cartItemsArr: 0 };
+            return { cartProducts: 0 };
         default:
             return state;
     }
