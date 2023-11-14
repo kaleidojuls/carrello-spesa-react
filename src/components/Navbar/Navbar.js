@@ -1,14 +1,19 @@
+import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Button from "../Button/Button";
-import { useNavigate } from "react-router-dom"
 
-const Navbar = ({ cartButtonCounter }) => {
+const Navbar = ({ page }) => {
     const navigate = useNavigate();
-    // const {isCartMenuOpen, menageCart, countProductsInCart} = navButton;
-    // const buttonClass = isCartMenuOpen? "btn btn-danger" : "btn btn-success";
-    const buttonText = "Vedi Carrello (" + cartButtonCounter + ")";
+    const productsInCart = useSelector((state) => state.cartItemsArr);
+    const buttonText = page === 'cart' ? "Chiudi Carrello (" + productsInCart.length + ")" :
+        "Vedi Carrello (" + productsInCart.length + ")";
+
     return <nav className="navbar navbar-dark bg-dark">
         <h1 className="navbar-brand">Shopping Online</h1>
-        <Button className={"btn btn-success"} buttonOnClick={() => navigate("/cart")}>{buttonText}</Button>
+        <Button className={page === 'cart' ? "btn btn-danger" : "btn btn-success"}
+            buttonOnClick={() => page === 'cart' ? navigate("/") : navigate("/cart")}>
+            {buttonText}
+        </Button>
     </nav>
 }
 

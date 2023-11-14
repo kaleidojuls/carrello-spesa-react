@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addToCart } from './store/store.js';
+
 import CardItem from './components/CardItem/CardItem';
 import Navbar from './components/Navbar/Navbar';
-import { addToCart } from './store/store.js';
 
 function App() {
   const [products, setProducts] = useState();
-  const cartItemsArr = useSelector((state) => state.cartItemsArr);
   const dispatch = useDispatch();
-  const countProductsInCart = cartItemsArr.length;
+
+  const addCartItems = (productToAdd) => {
+    dispatch(addToCart(productToAdd));
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,15 +22,10 @@ function App() {
     fetchProducts();
   }, []);
 
-  const addCartItems = (productToAdd) => {
-    dispatch(addToCart(productToAdd));
-    alert("Prodotto aggiunto al Carrello!")
-  }
-
   return (
     <div className="App">
       <header>
-        <Navbar cartButtonCounter={countProductsInCart} />
+        <Navbar />
       </header>
       <main className="d-flex flex-wrap justify-content-center bg-light">
 
