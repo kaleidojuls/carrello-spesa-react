@@ -13,7 +13,7 @@ const Navbar = ({ page }) => {
         <h1 className="navbar-brand">Shopping Online</h1>
         <Button className={page === 'cart' ? "btn btn-danger" : "btn btn-success"}
             buttonOnClick={() => page === 'cart' ? navigate("/") : navigate("/cart")}>
-            {buttonText}
+            <i class="bi bi-cart2"></i> {buttonText}
         </Button>
     </nav>
 }

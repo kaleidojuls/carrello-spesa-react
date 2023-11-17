@@ -32,7 +32,7 @@ function App() {
 
         {products ? products.map(product => {
           return <CardItem productData={product}
-            buttonText="Aggiungi al Carrello"
+            buttonText={<i class="bi bi-cart-plus"></i>}
             buttonOnClick={() => addCartItems(product)} />
         }) : "loading..."}
 
