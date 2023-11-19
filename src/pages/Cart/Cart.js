@@ -13,12 +13,11 @@ function Cart() {
                 <Navbar page={'cart'} />
             </header>
             <main className="d-flex flex-wrap justify-content-center bg-light">
-
-                {Object.keys(productsInCart)[0] ? productsInCart.map(product => {
-                    console.log(product);
-                    return <CardItem productData={product.product} />
-                }) : "Il Carrello è Vuoto"}
-
+                {Object.keys(productsInCart)[0] ?
+                    Object.values(productsInCart).map(cartEntry => {
+                        return <CardItem productData={cartEntry.product} />
+                    })
+                    : "Il Carrello è Vuoto"}
             </main>
         </div>
     )

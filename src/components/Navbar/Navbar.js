@@ -14,10 +14,10 @@ const Navbar = ({ page }) => {
 
             {page === 'cart' ?
                 <Button className="btn btn-danger" buttonOnClick={() => navigate("/")}>
-                    <i class="bi bi-cart2"></i> Chiudi Carrello ({productsInCart.length})
+                    <i className="bi bi-cart2"></i> Chiudi Carrello ({productsInCart.length})
                 </Button> :
                 <Button className="btn btn-success" buttonOnClick={() => navigate("/cart")}>
-                    <i class="bi bi-cart2"></i> Vedi Carrello ({productsInCart.length})
+                    <i className="bi bi-cart2"></i> Vedi Carrello ({productsInCart.length})
                 </Button>}
         </nav>
     )

@@ -34,10 +34,10 @@ const CardFooter = ({ productData, cardType }) => {
 
             {cardType == 'productDisplay' ?
                 <Button buttonOnClick={() => { addCartItem(id) }}>
-                    {<i class="bi bi-cart-plus"></i>}
+                    {<i className="bi bi-cart-plus"></i>}
                 </Button> :
                 <Button buttonOnClick={() => { removeCartItem() }} className="btn btn-danger">
-                    {<i class="bi bi-cart-x"></i>}
+                    {<i className="bi bi-cart-x"></i>}
                 </Button>}
         </div>
     )
