@@ -1,22 +1,13 @@
-import { useState } from 'react';
 
-import Button from "../Button/Button";
-import CardImage from "../CardImage/CardImage";
+import CardImage from "./CardImage/CardImage";
+import CardFooter from "./CardFooter/CardFooter";
 
 import "./CardItem.css";
 
-const CardItem = ({ productData, buttonClass, buttonText, buttonOnClick }) => {
-   const { title, description, price, stock } = productData;
-   const [quantity, setQuantity] = useState(1);
 
-   const handleQuantity = (action) => {
-      if (action == "plus" && quantity < stock) {
-         setQuantity(quantity + 1);
+const CardItem = ({ productData, cardType }) => {
 
-      } else if (action == "minus" && quantity > 1) {
-         setQuantity(quantity - 1);
-      }
-   }
+   const { title, description } = productData;
 
    return (
       <div className="myCard card">
@@ -25,18 +16,7 @@ const CardItem = ({ productData, buttonClass, buttonText, buttonOnClick }) => {
             <h3 className="card-title">{title}</h3>
             <p className="card-text">{description}</p>
          </div>
-
-         <div className="card-footer d-flex justify-content-around">
-            <p className="price">${price}</p>
-            <p className="quantity">
-               <i className="quantity-i bi bi-dash-circle-fill"
-                  onClick={() => { handleQuantity('minus') }}></i>
-               {quantity}
-               <i className="quantity-i bi bi-plus-circle-fill"
-                  onClick={() => { handleQuantity('plus') }}></i>
-            </p>
-            <Button className={buttonClass} buttonOnClick={buttonOnClick}>{buttonText}</Button>
-         </div>
+         <CardFooter productData={productData} cardType={cardType} />
       </div>
    )
 }

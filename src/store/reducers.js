@@ -1,5 +1,5 @@
 const initialState = {
-    cartProducts: [],
+    cartProducts: {},
 };
 
 const cartHandler = (state = initialState, action) => {
@@ -7,7 +7,7 @@ const cartHandler = (state = initialState, action) => {
         case "ADD_TO_CART":
             return {
                 ...state,
-                cartProducts: [...state.cartProducts, action.payload]
+                cartProducts: { ...state.cartProducts, ...action.payload }
             };
         case "REMOVE_FROM_CART":
             const updatedArr = [...state.cartProducts];

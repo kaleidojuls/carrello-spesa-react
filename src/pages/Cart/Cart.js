@@ -1,17 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeFromCart } from '../../store/store.js';
-
 import CardItem from '../../components/CardItem/CardItem.js';
 import Navbar from '../../components/Navbar/Navbar.js'
 
 function Cart() {
-    const productsInCart = useSelector((state) => state.cartProducts);
-    const dispatch = useDispatch();
 
-    const removeCartItems = (productToRemove) => {
-        dispatch(removeFromCart(productToRemove))
-    }
+    const productsInCart = useSelector((state) => state.cartProducts);
 
     return (
         <div className="Cart">
@@ -20,11 +14,9 @@ function Cart() {
             </header>
             <main className="d-flex flex-wrap justify-content-center bg-light">
 
-                {productsInCart[0] ? productsInCart.map(product => {
-                    return <CardItem productData={product}
-                        buttonClass="btn btn-danger"
-                        buttonText="Rimuovi dal Carrello"
-                        buttonOnClick={() => removeCartItems(product)} />
+                {Object.keys(productsInCart)[0] ? productsInCart.map(product => {
+                    console.log(product);
+                    return <CardItem productData={product.product} />
                 }) : "Il Carrello è Vuoto"}
 
             </main>
