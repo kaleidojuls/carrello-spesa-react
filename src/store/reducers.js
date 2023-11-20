@@ -1,27 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// STATE EXAMPLE
-// const initialState = [
 //     { (ACTION PAYLOAD EXAMPLE)
 //         productId: productData.id,
 //         productData: productData,
 //         quantity: quantity
 //     }
-//     ...
-// ];
 
 export const cartHandlerSlice = createSlice({
     name: 'cartHandler',
-    initialState: [],
+    initialState: {
+        products: [],
+        counter: 0
+    },
     reducers: {
         addToCart(state, action) {
-            const isInCart = state.filter(productEntry => {
+            const isInCart = state.products.filter(productEntry => {
                 return productEntry.productId === action.payload.productId
             });
+
             if (isInCart.length === 0) {
-                state.push(action.payload)
+                state.products.push(action.payload)
+                state.counter += action.payload.quantity
             } else {
-                return state.map(productEntry => {
+                state.products = state.products.map(productEntry => {
                     if (productEntry.productId === action.payload.productId) {
                         return {
                             ...productEntry,
@@ -31,6 +32,7 @@ export const cartHandlerSlice = createSlice({
                         return productEntry
                     }
                 })
+                state.counter += action.payload.quantity
             }
         },
 

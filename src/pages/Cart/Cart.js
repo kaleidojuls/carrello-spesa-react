@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar/Navbar.js'
 
 function Cart() {
 
-    const cartProducts = useSelector((state) => state.cartHandler);
+    const cartProducts = useSelector((state) => state.cartHandler.products);
 
     return (
         <div className="Cart">
