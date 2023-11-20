@@ -3,10 +3,10 @@ import "./QuantityHandler.css";
 const QuantityHandler = ({ quantity, setQuantity, stock }) => {
 
     const handleQuantity = (action) => {
-        if (action == "plus" && quantity < stock) {
+        if (action === "plus" && quantity < stock) {
             setQuantity(quantity + 1);
 
-        } else if (action == "minus" && quantity > 1) {
+        } else if (action === "minus" && quantity > 1) {
             setQuantity(quantity - 1);
         }
     }
