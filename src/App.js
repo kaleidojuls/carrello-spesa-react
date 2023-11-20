@@ -24,7 +24,7 @@ function App() {
       <main className="d-flex flex-wrap justify-content-center bg-light">
 
         {products ? products.map(product => {
-          return <CardItem productData={product} />
+          return <CardItem key={"card-" + product.id} productData={product} />
         }) : "loading..."}
 
       </main>

@@ -14,7 +14,7 @@ function Cart() {
             </header>
             <main className="d-flex flex-wrap justify-content-center bg-light">
                 {cartProducts[0] ? cartProducts.map(cartEntry => {
-                    return <CardItem productData={cartEntry.productData}
+                    return <CardItem key={"card-" + cartEntry.productData.id} productData={cartEntry.productData}
                         quantityInCart={cartEntry.quantity} />
 
                 }) : "Il Carrello è Vuoto"}

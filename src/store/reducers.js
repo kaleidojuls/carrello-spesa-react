@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-//     { (ACTION PAYLOAD EXAMPLE)
-//         productId: productData.id,
-//         productData: productData,
-//         quantity: quantity
-//     }
-
 export const cartHandlerSlice = createSlice({
     name: 'cartHandler',
     initialState: {
@@ -13,6 +7,11 @@ export const cartHandlerSlice = createSlice({
         counter: 0
     },
     reducers: {
+        // ACTION PAYLOAD EXAMPLE: {  
+        //   productId: productData.id,
+        //   productData: productData,
+        //   quantity: quantity 
+        // }
         addToCart(state, action) {
             const isInCart = state.products.filter(productEntry => {
                 return productEntry.productId === action.payload.productId
@@ -37,7 +36,10 @@ export const cartHandlerSlice = createSlice({
         },
 
         removeFromCart(state, action) {
-            console.log("not configured")
+            state.products = state.products.filter(cartEntry => {
+                return cartEntry.productId !== action.payload.productId
+            });
+            state.counter -= action.payload.quantity;
         }
     }
 })
