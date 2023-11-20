@@ -8,18 +8,19 @@ import { addToCart, removeFromCart } from '../../../store/store.js';
 import Button from "../../Button/Button";
 import QuantityHandler from './QuantityHandler/QuantityHandler.js';
 
-const CardFooter = ({ productData, cardType }) => {
+const CardFooter = ({ productData, quantityInCart }) => {
 
-    const { id, price, stock } = productData;
-    const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
+    const { price, stock } = productData;
+    const defaultQuantity = quantityInCart || 1;
+    const [quantity, setQuantity] = useState(defaultQuantity);
 
-    const addCartItem = (productId) => {
+    const addCartItem = (productData, quantity) => {
+
         dispatch(addToCart({
-            [productId]: {
-                product: productData,
-                quantity: quantity
-            }
+            productId: productData.id,
+            productData: productData,
+            quantity: quantity
         }));
     }
 
@@ -31,14 +32,15 @@ const CardFooter = ({ productData, cardType }) => {
         <div className="card-footer d-flex justify-content-around">
             <p className="price">${price}</p>
             <QuantityHandler quantity={quantity} setQuantity={setQuantity} stock={stock} />
-
-            {cardType == 'productDisplay' ?
-                <Button buttonOnClick={() => { addCartItem(id) }}>
-                    {<i className="bi bi-cart-plus"></i>}
-                </Button> :
-                <Button buttonOnClick={() => { removeCartItem() }} className="btn btn-danger">
-                    {<i className="bi bi-cart-x"></i>}
-                </Button>}
+            {quantityInCart ?
+                <Button buttonOnClick={() => { removeCartItem(productData) }} className="btn btn-danger">
+                    <i className="bi bi-cart-x"></i>
+                </Button>
+                :
+                <Button buttonOnClick={() => { addCartItem(productData, quantity) }}>
+                    <i className="bi bi-cart-plus"></i>
+                </Button>
+            }
         </div>
     )
 }

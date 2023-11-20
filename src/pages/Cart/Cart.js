@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import CardItem from '../../components/CardItem/CardItem.js';
 import Navbar from '../../components/Navbar/Navbar.js'
 
 function Cart() {
 
-    const productsInCart = useSelector((state) => state.cartProducts);
+    const cartProducts = useSelector((state) => state.cartHandler);
 
     return (
         <div className="Cart">
@@ -13,11 +13,11 @@ function Cart() {
                 <Navbar page={'cart'} />
             </header>
             <main className="d-flex flex-wrap justify-content-center bg-light">
-                {Object.keys(productsInCart)[0] ?
-                    Object.values(productsInCart).map(cartEntry => {
-                        return <CardItem productData={cartEntry.product} />
-                    })
-                    : "Il Carrello è Vuoto"}
+                {cartProducts[0] ? cartProducts.map(cartEntry => {
+                    return <CardItem productData={cartEntry.productData}
+                        quantityInCart={cartEntry.quantity} />
+
+                }) : "Il Carrello è Vuoto"}
             </main>
         </div>
     )

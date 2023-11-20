@@ -1,20 +1,16 @@
-const ADD_TO_CART = "ADD_TO_CART"
-const REMOVE_FROM_CART = "REMOVE_FROM_CART"
+// const ADD_TO_CART = "ADD_TO_CART"
+// const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 
-export function addToCart(item) {
-    return {
-        type: ADD_TO_CART,
-        payload: item
-    }
-}
+// export const addToCart = productInfo => {
+//     return {
+//         type: ADD_TO_CART,
+//         payload: productInfo
+//     }
+// }
 
-export function removeFromCart(item) {
-    return {
-        type: REMOVE_FROM_CART,
-        payload: item
-    }
-}
-
-export const clear = {
-    type: 'CLEAR'
-}
+// export const removeFromCart = productInfo => {
+//     return {
+//         type: REMOVE_FROM_CART,
+//         payload: productInfo
+//     }
+// }

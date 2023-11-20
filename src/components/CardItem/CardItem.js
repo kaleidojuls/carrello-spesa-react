@@ -5,7 +5,7 @@ import CardFooter from "./CardFooter/CardFooter";
 import "./CardItem.css";
 
 
-const CardItem = ({ productData, cardType }) => {
+const CardItem = ({ productData, quantityInCart }) => {
 
    const { title, description } = productData;
 
@@ -16,7 +16,7 @@ const CardItem = ({ productData, cardType }) => {
             <h3 className="card-title">{title}</h3>
             <p className="card-text">{description}</p>
          </div>
-         <CardFooter productData={productData} cardType={cardType} />
+         <CardFooter productData={productData} quantityInCart={quantityInCart} />
       </div>
    )
 }

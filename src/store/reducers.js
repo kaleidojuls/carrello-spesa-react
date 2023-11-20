@@ -1,27 +1,44 @@
-const initialState = {
-    cartProducts: {},
-};
+import { createSlice } from '@reduxjs/toolkit'
 
-const cartHandler = (state = initialState, action) => {
-    switch (action.type) {
-        case "ADD_TO_CART":
-            return {
-                ...state,
-                cartProducts: { ...state.cartProducts, ...action.payload }
-            };
-        case "REMOVE_FROM_CART":
-            const updatedArr = [...state.cartProducts];
-            const productIndex = updatedArr.indexOf(action.payload);
-            updatedArr.splice(productIndex, 1)
-            return {
-                ...state,
-                cartProducts: updatedArr
+// STATE EXAMPLE
+// const initialState = [
+//     { (ACTION PAYLOAD EXAMPLE)
+//         productId: productData.id,
+//         productData: productData,
+//         quantity: quantity
+//     }
+//     ...
+// ];
+
+export const cartHandlerSlice = createSlice({
+    name: 'cartHandler',
+    initialState: [],
+    reducers: {
+        addToCart(state, action) {
+            const isInCart = state.filter(productEntry => {
+                return productEntry.productId === action.payload.productId
+            });
+            if (isInCart.length === 0) {
+                state.push(action.payload)
+            } else {
+                return state.map(productEntry => {
+                    if (productEntry.productId === action.payload.productId) {
+                        return {
+                            ...productEntry,
+                            quantity: productEntry.quantity + action.payload.quantity
+                        }
+                    } else {
+                        return productEntry
+                    }
+                })
             }
-        case "CLEAR":
-            return { cartProducts: 0 };
-        default:
-            return state;
-    }
-};
+        },
 
-export default cartHandler;
+        removeFromCart(state, action) {
+            console.log("not configured")
+        }
+    }
+})
+
+export const { addToCart, removeFromCart } = cartHandlerSlice.actions
+export default cartHandlerSlice.reducer

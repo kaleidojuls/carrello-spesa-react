@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 const Navbar = ({ page }) => {
 
     const navigate = useNavigate();
-    const productsInCart = useSelector((state) => state.cartProducts);
+    const counter = useSelector((state) => state);
 
     return (
         <nav className="navbar navbar-dark bg-dark">
@@ -14,10 +14,10 @@ const Navbar = ({ page }) => {
 
             {page === 'cart' ?
                 <Button className="btn btn-danger" buttonOnClick={() => navigate("/")}>
-                    <i className="bi bi-cart2"></i> Chiudi Carrello ({productsInCart.length})
+                    <i className="bi bi-cart2"></i> Chiudi Carrello ({ })
                 </Button> :
                 <Button className="btn btn-success" buttonOnClick={() => navigate("/cart")}>
-                    <i className="bi bi-cart2"></i> Vedi Carrello ({productsInCart.length})
+                    <i className="bi bi-cart2"></i> Vedi Carrello ({ })
                 </Button>}
         </nav>
     )
