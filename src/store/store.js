@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import cartHandlerReducer, { addToCart, removeFromCart } from './reducers';
+import cartHandlerReducer, { addToCart, updateCart, removeFromCart } from './reducers';
 
 const store = configureStore({
     reducer: {
@@ -8,4 +8,4 @@ const store = configureStore({
 })
 
 export default store
-export { addToCart, removeFromCart } 
+export { addToCart, updateCart, removeFromCart } 

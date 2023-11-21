@@ -7,32 +7,30 @@ export const cartHandlerSlice = createSlice({
         counter: 0
     },
     reducers: {
-        // ACTION PAYLOAD EXAMPLE: {  
+        // ACTION.PAYLOAD EXAMPLE: {  
         //   productId: productData.id,
         //   productData: productData,
         //   quantity: quantity 
         // }
         addToCart(state, action) {
-            const isInCart = state.products.filter(productEntry => {
+            const isInCart = state.products.some(productEntry => {
                 return productEntry.productId === action.payload.productId
             });
 
-            if (isInCart.length === 0) {
-                state.products.push(action.payload)
-                state.counter += action.payload.quantity
-            } else {
+            if (isInCart) {
                 state.products = state.products.map(productEntry => {
-                    if (productEntry.productId === action.payload.productId) {
-                        return {
-                            ...productEntry,
-                            quantity: productEntry.quantity + action.payload.quantity
-                        }
-                    } else {
-                        return productEntry
-                    }
+                    const quantity = productEntry.quantity + action.payload.quantity;
+                    return productEntry.productId === action.payload.productId ?
+                        { ...productEntry, quantity } : productEntry
                 })
-                state.counter += action.payload.quantity
+            } else {
+                state.products.push(action.payload);
             }
+            state.counter += action.payload.quantity
+        },
+
+        updateCart(state, action) {
+            console.log("not implemented")
         },
 
         removeFromCart(state, action) {
@@ -44,5 +42,5 @@ export const cartHandlerSlice = createSlice({
     }
 })
 
-export const { addToCart, removeFromCart } = cartHandlerSlice.actions
+export const { addToCart, updateCart, removeFromCart } = cartHandlerSlice.actions
 export default cartHandlerSlice.reducer
