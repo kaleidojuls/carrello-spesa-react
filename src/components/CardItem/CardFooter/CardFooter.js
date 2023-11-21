@@ -15,18 +15,18 @@ const CardFooter = ({ productData, quantityInCart }) => {
     const [quantity, setQuantity] = useState(defaultQuantity);
     const { price, stock } = productData;
 
-    const addCartItem = (productData, quantity) => {
+    const addCartItem = (productId, quantity) => {
         dispatch(addToCart({
-            productId: productData.id,
-            productData: productData,
-            quantity: quantity
+            productId,
+            productData,
+            quantity
         }));
     }
 
-    const removeCartItem = (productData, inCart) => {
+    const removeCartItem = (productId, quantity) => {
         dispatch(removeFromCart({
-            productId: productData.id,
-            quantity: inCart
+            productId,
+            quantity
         }))
     }
 
@@ -37,11 +37,11 @@ const CardFooter = ({ productData, quantityInCart }) => {
                 stock={stock} productId={productData.id} />
 
             {quantityInCart ?
-                <Button buttonOnClick={() => { removeCartItem(productData, quantity) }} className="btn btn-danger">
+                <Button buttonOnClick={() => { removeCartItem(productData.id, quantity) }} className="btn btn-danger">
                     <i className="bi bi-cart-x"></i>
                 </Button>
                 :
-                <Button buttonOnClick={() => { addCartItem(productData, quantity) }}>
+                <Button buttonOnClick={() => { addCartItem(productData.id, quantity) }}>
                     <i className="bi bi-cart-plus"></i>
                 </Button>
             }
