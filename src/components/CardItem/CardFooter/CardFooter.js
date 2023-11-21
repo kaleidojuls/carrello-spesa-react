@@ -32,7 +32,7 @@ const CardFooter = ({ productData, quantityInCart }) => {
 
     return (
         <div className="card-footer d-flex justify-content-around">
-            <p className="price">${price}</p>
+            <p className="price">${price * quantity}</p>
             <QuantityHandler quantityState={[quantity, setQuantity, quantityInCart]}
                 stock={stock} productId={productData.id} />
 
