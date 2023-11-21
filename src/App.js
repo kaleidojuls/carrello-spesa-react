@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { addToCart } from './store/store.js';
 
 import CardItem from './components/CardItem/CardItem';
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
-  const [products, setProducts] = useState();
-  const dispatch = useDispatch();
 
-  const addCartItems = (productToAdd) => {
-    dispatch(addToCart(productToAdd));
-  }
+  const [products, setProducts] = useState();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,14 +24,12 @@ function App() {
       <main className="d-flex flex-wrap justify-content-center bg-light">
 
         {products ? products.map(product => {
-          return <CardItem productData={product}
-            buttonText="Aggiungi al Carrello"
-            buttonOnClick={() => addCartItems(product)} />
+          return <CardItem key={"card-" + product.id} productData={product} />
         }) : "loading..."}
 
       </main>
     </div>
-  );
+  )
 }
 
 export default App;

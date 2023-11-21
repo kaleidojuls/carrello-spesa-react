@@ -1,6 +1,7 @@
 import "./CardImage.css"
 
 const CardImage = ({ imageData }) => {
+
     const { title, thumbnail } = imageData || {};
 
     return <img className="imageThumbnail"

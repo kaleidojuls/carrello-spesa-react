@@ -1,27 +1,51 @@
-const initialState = {
-    cartProducts: [],
-};
+import { createSlice } from '@reduxjs/toolkit'
 
-const cartHandler = (state = initialState, action) => {
-    switch (action.type) {
-        case "ADD_TO_CART":
-            return {
-                ...state,
-                cartProducts: [...state.cartProducts, action.payload]
-            };
-        case "REMOVE_FROM_CART":
-            const updatedArr = [...state.cartProducts];
-            const productIndex = updatedArr.indexOf(action.payload);
-            updatedArr.splice(productIndex, 1)
-            return {
-                ...state,
-                cartProducts: updatedArr
+export const cartHandlerSlice = createSlice({
+    name: 'cartHandler',
+    initialState: {
+        products: [],
+        counter: 0
+    },
+    reducers: {
+        // ACTION.PAYLOAD EXAMPLE: {  
+        //   productId: productData.id,
+        //   productData: productData,
+        //   quantity: quantity 
+        // }
+        addToCart(state, action) {
+            const isInCart = state.products.some(productEntry => {
+                return productEntry.productId === action.payload.productId
+            });
+
+            if (isInCart) {
+                state.products = state.products.map(productEntry => {
+                    const quantity = productEntry.quantity + action.payload.quantity;
+                    return productEntry.productId === action.payload.productId ?
+                        { ...productEntry, quantity } : productEntry
+                })
+            } else {
+                state.products.push(action.payload);
             }
-        case "CLEAR":
-            return { cartProducts: 0 };
-        default:
-            return state;
-    }
-};
+            state.counter += action.payload.quantity
+        },
 
-export default cartHandler;
+        updateCart(state, action) {
+            state.products = state.products.map(productEntry => {
+                const quantity = productEntry.quantity + action.payload.quantity;
+                return productEntry.productId === action.payload.productId ?
+                    { ...productEntry, quantity } : productEntry
+            })
+            state.counter += action.payload.quantity
+        },
+
+        removeFromCart(state, action) {
+            state.products = state.products.filter(cartEntry => {
+                return cartEntry.productId !== action.payload.productId
+            });
+            state.counter -= action.payload.quantity;
+        }
+    }
+})
+
+export const { addToCart, updateCart, removeFromCart } = cartHandlerSlice.actions
+export default cartHandlerSlice.reducer

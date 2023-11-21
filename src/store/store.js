@@ -1,7 +1,11 @@
-import { createStore } from "redux";
-import cartHandler from './reducers';
-import { addToCart, removeFromCart, clear } from './actions';
+import { configureStore } from '@reduxjs/toolkit'
+import cartHandlerReducer, { addToCart, updateCart, removeFromCart } from './reducers';
 
-export const store = createStore(cartHandler);
+const store = configureStore({
+    reducer: {
+        cartHandler: cartHandlerReducer,
+    }
+})
 
-export { addToCart, removeFromCart, clear } 
+export default store
+export { addToCart, updateCart, removeFromCart } 
