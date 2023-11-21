@@ -11,7 +11,6 @@ import QuantityHandler from './QuantityHandler/QuantityHandler.js';
 const CardFooter = ({ productData, quantityInCart }) => {
 
     const dispatch = useDispatch();
-    const isInCart = quantityInCart ? true : false;
     const defaultQuantity = quantityInCart || 1;
     const [quantity, setQuantity] = useState(defaultQuantity);
     const { price, stock } = productData;
@@ -34,8 +33,8 @@ const CardFooter = ({ productData, quantityInCart }) => {
     return (
         <div className="card-footer d-flex justify-content-around">
             <p className="price">${price}</p>
-            <QuantityHandler quantityState={[quantity, setQuantity]}
-                isInCart={isInCart} stock={stock} />
+            <QuantityHandler quantityState={[quantity, setQuantity, quantityInCart]}
+                stock={stock} productId={productData.id} />
 
             {quantityInCart ?
                 <Button buttonOnClick={() => { removeCartItem(productData, quantity) }} className="btn btn-danger">

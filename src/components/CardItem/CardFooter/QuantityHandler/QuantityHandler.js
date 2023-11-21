@@ -4,20 +4,26 @@ import { useDispatch } from 'react-redux';
 import { updateCart } from '../../../../store/store.js';
 
 
-const QuantityHandler = ({ quantityState, isInCart, stock }) => {
-    const [quantity, setQuantity] = quantityState;
+const QuantityHandler = ({ quantityState, stock, productId }) => {
+    const [quantity, setQuantity, quantityInCart] = quantityState;
     const dispatch = useDispatch();
 
     const handleQuantity = (action) => {
         if (action === "plus" && quantity < stock) {
-            if (isInCart) {
-                dispatch(updateCart());
+            if (quantityInCart) {
+                dispatch(updateCart({
+                    productId,
+                    quantity: 1
+                }));
             }
             setQuantity(quantity + 1);
 
         } else if (action === "minus" && quantity > 1) {
-            if (isInCart) {
-                dispatch(updateCart());
+            if (quantityInCart) {
+                dispatch(updateCart({
+                    productId,
+                    quantity: -1
+                }));
             }
             setQuantity(quantity - 1);
         }

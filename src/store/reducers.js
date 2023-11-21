@@ -30,7 +30,12 @@ export const cartHandlerSlice = createSlice({
         },
 
         updateCart(state, action) {
-            console.log("not implemented")
+            state.products = state.products.map(productEntry => {
+                const quantity = productEntry.quantity + action.payload.quantity;
+                return productEntry.productId === action.payload.productId ?
+                    { ...productEntry, quantity } : productEntry
+            })
+            state.counter += action.payload.quantity
         },
 
         removeFromCart(state, action) {
