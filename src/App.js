@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 function App() {
 
   const [products, setProducts] = useState();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -14,12 +15,12 @@ function App() {
       setProducts(dataJSON.products);
     };
     fetchProducts();
-  }, []);
+  }, [search]);
 
   return (
     <div className="App">
       <header>
-        <Navbar />
+        <Navbar searchState={[search, setSearch]} />
       </header>
       <main className="d-flex flex-wrap justify-content-center bg-light">
 

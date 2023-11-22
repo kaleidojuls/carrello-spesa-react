@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 import Button from "../Button/Button";
+import Searchbar from "./Searchbar/Searchbar";
 
-const Navbar = ({ page }) => {
+const Navbar = ({ page, searchState }) => {
 
     const navigate = useNavigate();
     const counter = useSelector((state) => state.cartHandler.counter);
@@ -11,6 +12,7 @@ const Navbar = ({ page }) => {
     return (
         <nav className="navbar navbar-dark bg-dark">
             <h1 className="navbar-brand">Shopping Online</h1>
+            <Searchbar searchState={searchState} />
 
             {page === 'cart' ?
                 <Button className="btn btn-danger" buttonOnClick={() => navigate("/")}>
