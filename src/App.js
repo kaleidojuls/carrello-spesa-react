@@ -10,7 +10,8 @@ function App() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const dataFetched = await fetch("https://dummyjson.com/products?limit=12");
+      const url = `https://dummyjson.com/products/search?q=${search}&limit=12`;
+      const dataFetched = await fetch(url);
       const dataJSON = await dataFetched.json();
       setProducts(dataJSON.products);
     };
@@ -20,14 +21,15 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Navbar searchState={[search, setSearch]} />
+        <Navbar setSearch={setSearch} />
       </header>
       <main className="d-flex flex-wrap justify-content-center bg-light">
 
-        {products ? products.map(product => {
+        {products && products.length > 0 ? products.map(product => {
           return <CardItem key={"card-" + product.id} productData={product} />
-        }) : "loading..."}
-
+        }) :
+          products && products.length === 0 ?
+            "no products compatible with your search" : "loading..."}
       </main>
     </div>
   )

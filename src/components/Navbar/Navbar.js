@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Button from "../Button/Button";
 import Searchbar from "./Searchbar/Searchbar";
 
-const Navbar = ({ page, searchState }) => {
+const Navbar = ({ page, setSearch }) => {
 
     const navigate = useNavigate();
     const counter = useSelector((state) => state.cartHandler.counter);
@@ -12,7 +12,7 @@ const Navbar = ({ page, searchState }) => {
     return (
         <nav className="navbar navbar-dark bg-dark">
             <h1 className="navbar-brand">Shopping Online</h1>
-            <Searchbar searchState={searchState} />
+            <Searchbar setSearch={setSearch} />
 
             {page === 'cart' ?
                 <Button className="btn btn-danger" buttonOnClick={() => navigate("/")}>
