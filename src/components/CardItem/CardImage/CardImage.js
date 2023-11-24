@@ -1,4 +1,7 @@
-import "./CardImage.css"
+import "./CardImage.css";
+
+import React from 'react';
+
 
 const CardImage = ({ imageData }) => {
 

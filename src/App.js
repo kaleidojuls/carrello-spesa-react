@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CardItem from './components/CardItem/CardItem';
 import Navbar from './components/Navbar/Navbar';
@@ -24,11 +24,11 @@ function App() {
         <Navbar setSearch={setSearch} />
       </header>
       <main className="d-flex flex-wrap justify-content-center bg-light">
-
-        {products && products.length > 0 ? products.map(product => {
-          return <CardItem key={"card-" + product.id} productData={product} />
-        }) :
-          products && products.length === 0 ?
+        {products && products.length > 0 ?
+          products.map(product => {
+            return <CardItem key={"card-" + product.id} productData={product} />
+          })
+          : products && products.length === 0 ?
             "no products compatible with your search" : "loading..."}
       </main>
     </div>

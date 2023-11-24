@@ -1,3 +1,4 @@
+import React from 'react';
 
 import CardImage from "./CardImage/CardImage";
 import CardFooter from "./CardFooter/CardFooter";
