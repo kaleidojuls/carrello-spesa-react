@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import CardItem from './components/CardItem/CardItem';
+import Cart from './pages/Cart';
+import Home from './pages/Home';
 import Navbar from './components/Navbar/Navbar';
+
 
 function App() {
 
   const [products, setProducts] = useState();
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState("home");
+  const cartProducts = useSelector((state) => state.cartHandler.products);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,15 +26,13 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Navbar setSearch={setSearch} />
+        <Navbar setSearch={setSearch} pageState={[page, setPage]} />
       </header>
       <main className="d-flex flex-wrap justify-content-center bg-light">
-        {products && products.length > 0 ?
-          products.map(product => {
-            return <CardItem key={"card-" + product.id} productData={product} />
-          })
-          : products && products.length === 0 ?
-            "no products compatible with your search" : "loading..."}
+        {
+          page === "home" ? <Home products={products} />
+            : <Cart cartProducts={cartProducts} />
+        }
       </main>
     </div>
   )

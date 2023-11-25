@@ -1,27 +1,25 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 import Button from "../Button/Button";
 import Searchbar from "./Searchbar/Searchbar";
 
-const Navbar = ({ page, setSearch }) => {
 
-    const navigate = useNavigate();
+const Navbar = ({ setSearch, pageState }) => {
+
+    const [page, setPage] = pageState;
+    const newPage = page === 'home' ? "cart" : "home";
+    const buttonClass = page === 'home' ? "success" : "danger";
+    const iconClass = page === 'home' ? "right" : "down";
     const counter = useSelector((state) => state.cartHandler.counter);
 
     return (
         <nav className="navbar navbar-dark bg-dark">
             <h1 className="navbar-brand">Shopping Online</h1>
-            <Searchbar setSearch={setSearch} />
-
-            {page === 'cart' ?
-                <Button className="btn btn-danger" buttonOnClick={() => navigate("/")}>
-                    <i className="bi bi-caret-down-fill"></i> <i className="bi bi-cart4"></i>({counter})
-                </Button> :
-                <Button className="btn btn-success" buttonOnClick={() => navigate("/cart")}>
-                    <i className="bi bi-caret-right-fill"></i> <i className="bi bi-cart4"></i>({counter})
-                </Button>}
+            <Searchbar setSearch={setSearch} pageState={pageState} />
+            <Button className={`btn btn-${buttonClass}`} buttonOnClick={() => { setPage(newPage) }}>
+                <i className={`bi bi-caret-${iconClass}-fill`}></i> <i className="bi bi-cart4"></i>({counter})
+            </Button>
         </nav>
     )
 }

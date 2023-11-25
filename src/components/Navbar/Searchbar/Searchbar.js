@@ -2,11 +2,16 @@ import React from 'react';
 
 import Button from "../../Button/Button";
 
-const Searchbar = ({ setSearch }) => {
+
+const Searchbar = ({ setSearch, pageState }) => {
+    const [page, setPage] = pageState;
 
     const searchText = (e) => {
         const searchText = document.getElementById("search").value;
         setSearch(searchText);
+        if (page === "cart") {
+            setPage("home");
+        }
         e.preventDefault();
     }
 
