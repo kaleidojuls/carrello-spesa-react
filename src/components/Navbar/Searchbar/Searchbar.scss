@@ -1,0 +1,26 @@
+#search {
+
+    #searchText {
+        display: none;
+    }
+
+    &:hover {
+        position: fixed;
+
+        #searchText {
+            display: initial;
+        }
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    #search {
+        #searchText {
+            display: initial;
+        }
+
+        &:hover {
+            position: initial;
+        }
+    }
+}

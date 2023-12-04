@@ -28,7 +28,7 @@ function App() {
       <header>
         <Navbar setSearch={setSearch} pageState={[page, setPage]} />
       </header>
-      <main className="d-flex flex-wrap justify-content-center bg-light">
+      <main className="d-flex flex-wrap justify-content-center bg-light mt-5 pt-3">
         {
           page === "home" ? <Home products={products} />
             : <Cart cartProducts={cartProducts} />

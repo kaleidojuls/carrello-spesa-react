@@ -4,7 +4,7 @@ import React from 'react';
 const Button = ({ children, className, buttonOnClick }) => {
 
     return (
-        <button onClick={buttonOnClick} className={className || "btn btn-primary"}
+        <button type="button" onClick={buttonOnClick} className={className || "btn btn-primary"}
             style={{ fontWeight: "bold" }}>{children}</button>
     )
 }

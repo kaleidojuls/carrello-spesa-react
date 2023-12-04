@@ -14,9 +14,9 @@ const Navbar = ({ setSearch, pageState }) => {
     const counter = useSelector((state) => state.cartHandler.counter);
 
     return (
-        <nav className="navbar navbar-dark bg-dark">
-            <h1 className="navbar-brand">Shopping Online</h1>
+        <nav className="navbar navbar-dark bg-dark fixed-top">
             <Searchbar setSearch={setSearch} pageState={pageState} />
+            <h1 className="navbar-brand">Shopping Online</h1>
             <Button className={`btn btn-${buttonClass}`} buttonOnClick={() => { setPage(newPage) }}>
                 <i className={`bi bi-caret-${iconClass}-fill`}></i> <i className="bi bi-cart4"></i>({counter})
             </Button>
