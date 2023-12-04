@@ -22,10 +22,10 @@ const Searchbar = ({ setSearch, pageState }) => {
 
     return (
         <div id="search" className="d-flex">
-            <input id="searchText" className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <Button className="btn btn-outline-success" buttonOnClick={(e) => searchText(e)}>
+            <button className="searchBtn btn btn-outline-success" onClick={(e) => searchText(e)}>
                 <i className="bi bi-search"></i>
-            </Button>
+            </button>
+            <input id="searchText" className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import './Navbar.css';
+import './Navbar.scss';
 
 import Button from "../Button/Button";
 import Searchbar from "./Searchbar/Searchbar";

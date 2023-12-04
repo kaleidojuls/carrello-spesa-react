@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateCart } from '../../../../store/store.js';
 
-import "./QuantityHandler.css";
+import "./QuantityHandler.scss";
 
 
 const QuantityHandler = ({ quantityState, stock, productId }) => {

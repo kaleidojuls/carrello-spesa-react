@@ -1,0 +1,13 @@
+.title:hover {
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 576px) {
+
+    .title {
+        position: relative;
+        left: -1.5vw;
+    }
+
+}

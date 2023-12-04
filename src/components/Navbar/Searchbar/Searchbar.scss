@@ -1,5 +1,10 @@
 #search {
+    .searchBtn {
+        background-color: #343a40;
+    }
+
     #searchText {
+        width: 50vw;
         display: none;
     }
 
@@ -16,10 +21,16 @@
     #search {
         #searchText {
             display: initial;
+            visibility: hidden;
+            width: initial;
         }
 
         &:hover {
             position: initial;
+
+            #searchText {
+                visibility: initial;
+            }
         }
     }
 }
